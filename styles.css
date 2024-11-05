@@ -1,0 +1,310 @@
+body {
+    background-image: url('../images/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Noto Serif JP', serif;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.5);
+    max-width: 800px;
+    width: 95%;
+    margin: 20px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /*display: flex;*/
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-section {
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+.checkbox-section {
+    display: flex;
+    flex-direction: row; /* 縦に並べる */
+    align-items: flex-start; /* 左揃えにする */
+    margin-right: 5px; /* 右に余白を追加 */
+    margin-left: 10px; /* 左に余白を追加 */
+}
+
+.checkbox-label {
+    margin-left: 20px;
+}
+
+.calculate-button {
+    width: 250px;
+    height: 60px;
+    font-size: 1.2rem;
+    margin-top: 5px;
+}
+
+.result-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 5px;
+    
+}
+
+.result-box {
+    background-color: #e9ecef;
+    padding: 20px;
+    width: 45%;
+    text-align: center;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+}
+
+.result-title {
+    font-weight: bold;
+}
+
+.result-price {
+    margin-top: 10px;
+    font-size: 1.8rem;
+    color: #17a2b8;
+}
+
+.result-container {
+    background-color: transparent;
+    padding: 20px;
+    width: 100%;
+}
+
+.row-cols-2 > .col {
+    padding: 0px;
+}
+
+.card {
+    transition: transform 0.2s;
+    margin: 0;
+    min-height: 150px;
+    --bs-border-color-translucent:rgba(0, 0, 0, 0.0);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.result-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* 追加のスタイル */
+.card-marunage {
+    background-color: #ffd700;
+}
+
+.card-omakase {
+    background-color: #98fb98;
+}
+
+.card-self {
+    background-color: #87cefa;
+}
+
+.card-yukkuri {
+    background-color: #f8f9fa;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 15px;
+}
+
+.card-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    margin-bottom: 0;
+}
+
+#priceResult {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* 新しく追加されたスタイル */
+/*
+.card-yukkuri {
+    background-color: #f8f9fa;
+}
+
+.card-self {
+    background-color: #ffe4e1;
+}
+
+.card-omakase {
+    background-color: #cd5c5c;
+}
+
+.card-marunage {
+    background-color: #ff0000;
+}
+*/
+.bubble {
+    position: relative;
+    background: #ff0000;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.bubble::after {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: 10px 10px 0;
+    border-color: #ff0000 transparent;
+    display: block;
+    width: 0;
+    z-index: 1;
+    bottom: -10px;
+    left: 20px;
+}
+
+.form-check {
+    margin-bottom: 10px; /* 各チェックボックスの間に余白を追加 */
+    margin-left: 2rem;
+}
+
+.form-control, .form-select, .btn {
+    height: 50px;
+    font-size: 1.1rem;
+}
+
+.form-check-input {
+    width: 1.5em;
+    height: 1.5em;
+    margin-top: 0.25em;
+}
+
+.form-check-label {
+    font-size: 1rem;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .container {
+        padding: 20px;
+    }
+    
+    .row-cols-2 {
+        row-gap: 20px !important;
+    }
+}
+
+/* プランカードのベーススタイル */
+.plan-card {
+    height: 100%;
+    width: 98%;
+    max-width: 90%;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+/* 背景画像の設定 */
+.marunage-bg {
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
+                url('images/marunage-bg.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.omakase-bg {
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
+                url('images/omakase-bg.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.sakutto-bg {
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
+                url('images/sakutto-bg.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.self-bg {
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
+                url('images/self-bg.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* プランの内容のスタイル */
+.plan-content {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.result-price {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0);
+    margin: 0;
+}
+
+/* iPadの縦表示用のメディアクエリ */
+@media only screen 
+and (min-device-width: 768px) 
+and (max-device-width: 1024px) 
+and (orientation: portrait) {
+    .plan-card {
+        height: 120px;
+        max-width: 98%;
+    }
+
+    .result-price {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+    }
+
+    .row-cols-2 > * {
+        padding: 10px;
+    }
+}
+
+/* カードのホバーエフェクト */
+.card {
+    transition: transform 0.3s ease;
+    margin: 0;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* 結果コンテナのスタイル */
+.result-container {
+    background-color: transparent;
+    padding: 20px;
+}
+
+.form-label{
+    font-size: 1.5rem;
+
+}
