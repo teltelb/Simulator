@@ -132,6 +132,9 @@ body {
     margin-bottom: 0;
 }
 
+.card-text:last-child {
+    margin-top: -96px;
+}
 #priceResult {
     font-size: 1.5rem;
     font-weight: bold;
@@ -210,7 +213,7 @@ body {
 
 /* プランカードのベーススタイル */
 .plan-card {
-    height: 100%;
+    height: 200px;
     width: 98%;
     max-width: 90%;
     position: relative;
@@ -274,7 +277,7 @@ and (min-device-width: 768px)
 and (max-device-width: 1024px) 
 and (orientation: portrait) {
     .plan-card {
-        height: 120px;
+        height: 200px;
         max-width: 98%;
     }
 
@@ -307,4 +310,9 @@ and (orientation: portrait) {
 .form-label{
     font-size: 1.5rem;
 
+}
+
+.price-display {
+    /* 既存のスタイル */
+    margin-top: -10px; /* 例: 上に10px移動 */
 }
