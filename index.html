@@ -56,11 +56,11 @@
             <div class="col-6">
                 <label for="grade" class="form-label">グレード</label>
                 <select id="grade" class="form-select">
-                    <option value="自分でデザイン">自分でデザイン</option>
-                    <option value="ライト">ライト</option>
-                    <option value="スタンダード">スタンダード</option>
-                    <option value="プレミアム">プレミアム</option>
                     <option value="ハイグレード">ハイグレード</option>
+                    <option value="プレミアム">プレミアム</option>
+                    <option value="スタンダード">スタンダード</option>
+                    <option value="ライト">ライト</option>
+                    <option value="自分でデザイン">自分でデザイン</option>
                 </select>
             </div>
             <div class="col-6">
@@ -114,15 +114,12 @@
         <!-- 結果表示部分 -->
         <div class="result-container">
             <h2 class="text-center mb-4">見積もり結果</h2>
-            <div class="overlay-image">
-                <img src="images/osusume.png" alt="Overlay Image" class="overlay-img">
-            </div>
             <div class="row row-cols-2" style="margin: 5px -10px;">
                 <div class="col" id="marunage-plan">
                     <div class="card h-100 shadow-sm">
                         <div class="card-body plan-card marunage-bg">
                             <div class="plan-content">
-                                <p class="card-text result-price" id="marunage-plan-price">¥0</p>
+                                <p class="card-text result-price price-display" id="marunage-plan-price">¥0</p>
                             </div>
                         </div>
                     </div>
@@ -131,7 +128,7 @@
                     <div class="card h-100 shadow-sm">
                         <div class="card-body plan-card omakase-bg">
                             <div class="plan-content">
-                                <p class="card-text result-price" id="omakase-plan-price">¥0</p>
+                                <p class="card-text result-price price-display" id="omakase-plan-price">¥0</p>
                             </div>
                         </div>
                     </div>
@@ -140,7 +137,7 @@
                     <div class="card h-100 shadow-sm">
                         <div class="card-body plan-card sakutto-bg">
                             <div class="plan-content">
-                                <p class="card-text result-price" id="self-plan-price">¥0</p>
+                                <p class="card-text result-price price-display" id="self-plan-price">¥0</p>
                             </div>
                         </div>
                     </div>
@@ -149,7 +146,7 @@
                     <div class="card h-100 shadow-sm">
                         <div class="card-body plan-card self-bg">
                             <div class="plan-content">
-                                <p class="card-text result-price" id="yukkuri-plan-price">¥0</p>
+                                <p class="card-text result-price price-display" id="yukkuri-plan-price">¥0</p>
                             </div>
                         </div>
                     </div>
