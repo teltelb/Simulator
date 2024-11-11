@@ -77,7 +77,7 @@
             <div class="col-6">
                 <div class="form-section">
                     <label for="quantity" class="form-label">枚数</label>
-                    <input type="number" id="quantity" class="form-control" placeholder="枚数を入力">
+                    <input type="text" id="quantity" class="form-control" placeholder="枚数を入力" oninput="validateNumberInput(this)">
                 </div>
             </div>
 
@@ -160,5 +160,13 @@
 
     <!-- JavaScriptで計算処理を追加 -->
     <script src="scripts.js"></script>
+
+    <script>
+    // JavaScript部分
+    function validateNumberInput(input) {
+        // 入力値が数字のみであるかを確認
+        input.value = input.value.replace(/[^0-9]/g, '');
+    }
+    </script>
 </body>
 </html>
