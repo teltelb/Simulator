@@ -53,20 +53,23 @@ function calculatePrice() {
     }
 
     // 各プランの価格計算
+    // サクッとプランの計算
     let sakuttoPrice = selfPrice + 1480;
     
+    // のんびりおまかせプランの計算
     let omakasePrice = selfPrice;
     switch(discount) {
         case '超早割':
+        case '早割':
             omakasePrice += quantity * 100;
             break;
-        case '早割':
         case '通常料金':
             omakasePrice += quantity * 200;
             break;
     }
     
-    let marunagePrice = omakasePrice + 1480;
+    // まるっとおまかせプランの計算
+    let marunagePrice = omakasePrice + 1960;
 
     // 結果の表示
     document.getElementById('yukkuri-plan-price').textContent = `¥${selfPrice.toLocaleString()}`;
