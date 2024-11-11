@@ -133,7 +133,7 @@ body {
 }
 
 .card-text:last-child {
-    margin-top: -96px;
+    margin-top: -120px;
 }
 #priceResult {
     font-size: 1.5rem;
@@ -264,7 +264,7 @@ body {
 }
 
 .result-price {
-    font-size: 2.5rem;
+    font-size: 4rem;
     font-weight: bold;
     color: white;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0);
@@ -282,7 +282,7 @@ and (orientation: portrait) {
     }
 
     .result-price {
-        font-size: 2.5rem;
+        font-size: 4rem;
         margin-bottom: 20px;
     }
 
@@ -314,5 +314,5 @@ and (orientation: portrait) {
 
 .price-display {
     /* 既存のスタイル */
-    margin-top: -10px; /* 例: 上に10px移動 */
+    margin-top: -120px; /* 例: 上に10px移動 */
 }
