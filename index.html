@@ -106,19 +106,17 @@
             </div>
         </div>
 
-        <!-- 計算ボタン -->
-        <div class="text-center mt-4">
-            <button class="btn btn-primary calculate-button" onclick="calculatePrice()">計算</button>
-        </div>
-
         <!-- 結果表示部分 -->
         <div class="result-container">
             <h2 class="text-center mb-4">見積もり結果</h2>
             <div class="row row-cols-2" style="margin: 5px -10px;">
+                <h3 class="attention-text col-12">宛名印刷も一緒にご依頼される方が増えています！</h3>
+                <!-- 既存のプランカード -->
                 <div class="col" id="marunage-plan">
                     <div class="card h-100 shadow-sm">
                         <div class="card-body plan-card marunage-bg">
                             <div class="plan-content">
+                                <h3 class="card-title" hidden="hidden">まるっとおまかせプラン</h3>
                                 <p class="card-text result-price price-display" id="marunage-plan-price">¥0</p>
                             </div>
                         </div>
@@ -128,6 +126,7 @@
                     <div class="card h-100 shadow-sm">
                         <div class="card-body plan-card omakase-bg">
                             <div class="plan-content">
+                                <h3 class="card-title" hidden="hidden">のんびりおまかせプラン</h3>
                                 <p class="card-text result-price price-display" id="omakase-plan-price">¥0</p>
                             </div>
                         </div>
@@ -137,6 +136,7 @@
                     <div class="card h-100 shadow-sm">
                         <div class="card-body plan-card sakutto-bg">
                             <div class="plan-content">
+                                <h3 class="card-title" hidden="hidden">宛名なし高速プラン</h3>
                                 <p class="card-text result-price price-display" id="self-plan-price">¥0</p>
                             </div>
                         </div>
@@ -146,6 +146,7 @@
                     <div class="card h-100 shadow-sm">
                         <div class="card-body plan-card self-bg">
                             <div class="plan-content">
+                                <h3 class="card-title" hidden="hidden">セルフプラン</h3>
                                 <p class="card-text result-price price-display" id="yukkuri-plan-price">¥0</p>
                             </div>
                         </div>
@@ -168,5 +169,16 @@
         input.value = input.value.replace(/[^0-9]/g, '');
     }
     </script>
+
+    <!-- モーダルの構造 -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="planName">プラン名</h2>
+            <p>印刷代（オプション含む）: <span id="printCost">0円</span></p>
+            <p>はがき代: <span id="postcardCost">0円</span></p>
+            <p>合計金額: <span id="totalCost">0円</span></p>
+        </div>
+    </div>
 </body>
 </html>
