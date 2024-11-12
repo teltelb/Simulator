@@ -16,19 +16,15 @@ function updateVisiblePlans() {
 
 // calculatePrice関数を以下のように修正してください
 function calculatePrice() {
-    const quantity = parseInt(document.getElementById('quantity').value);
-    
-    if (!quantity) {
-        alert('枚数を指定してください');
-        return;
-    }
+    const quantity = parseInt(document.getElementById('quantity').value) || 0;
 
     const grade = document.getElementById('grade').value;
     const finish = document.getElementById('finish').value;
     const discount = document.getElementById('discount').value;
-    const bringYourOwn = document.getElementById('bring-your-own').checked; // はがき持込のチェックボックス
-    const dmCoupon = document.getElementById('dm-option').checked; // DMクーポンの状態を取得
+    const bringYourOwn = document.getElementById('bring-your-own').checked;
+    const dmCoupon = document.getElementById('dm-option').checked;
 
+    // 印刷代の計算
     let selfPrice = calculateBasePrice(grade, finish, quantity);
 
     // 割引の適用
@@ -42,14 +38,22 @@ function calculatePrice() {
         // '通常料金'の場合は何もしない
     }
 
-    // はがき持込の追加料金
+    // はがき持込なしの追加料金
     if (!bringYourOwn) {
         selfPrice += quantity * 85;
     }
 
     // DMクーポンの適用
     if(dmCoupon){
-        selfPrice -= 500;
+        switch(discount) {
+            case '超早割':
+            case '早割':
+                selfPrice -= 500;
+                break;
+            case '通常料金':
+                selfPrice -= 300;
+                break;
+        }
     }
 
     // 各プランの価格計算
@@ -71,11 +75,16 @@ function calculatePrice() {
     // まるっとおまかせプランの計算
     let marunagePrice = omakasePrice + 1960;
 
-    // 結果の表示
-    document.getElementById('yukkuri-plan-price').textContent = `¥${selfPrice.toLocaleString()}`;
-    document.getElementById('self-plan-price').textContent = `¥${sakuttoPrice.toLocaleString()}`;
-    document.getElementById('omakase-plan-price').textContent = `¥${omakasePrice.toLocaleString()}`;
-    document.getElementById('marunage-plan-price').textContent = `¥${marunagePrice.toLocaleString()}`;
+    if(quantity == null || quantity == 0){
+        selfPrice = 0;
+        sakuttoPrice = 0;
+        omakasePrice = 0;
+        marunagePrice = 0;
+    }
+    document.getElementById('yukkuri-plan-price').textContent = `¥${(isNaN(selfPrice) ? 0 : selfPrice).toLocaleString()}`;
+    document.getElementById('self-plan-price').textContent = `¥${(isNaN(sakuttoPrice) ? 0 : sakuttoPrice).toLocaleString()}`;
+    document.getElementById('omakase-plan-price').textContent = `¥${(isNaN(omakasePrice) ? 0 : omakasePrice).toLocaleString()}`;
+    document.getElementById('marunage-plan-price').textContent = `¥${(isNaN(marunagePrice) ? 0 : marunagePrice).toLocaleString()}`;
 }
 
 function calculateBasePrice(grade, finish, quantity) {
@@ -149,10 +158,67 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('finish').addEventListener('change', updateVisiblePlans);
 });
 
-// 計算ボタンにイベントリスナーを追加
+// JavaScriptコード
 document.addEventListener('DOMContentLoaded', function() {
-    const calculateButton = document.getElementById('calculate-button');
-    if (calculateButton) {
-        calculateButton.addEventListener('click', calculatePrice);
+    const modal = document.getElementById("myModal");
+    const span = document.getElementsByClassName("close")[0];
+
+    // 各入力要素にイベントリスナーを追加
+    const inputs = ['quantity', 'grade', 'finish', 'discount', 'bring-your-own', 'dm-option'];
+    inputs.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.addEventListener('input', calculatePrice);
+            element.addEventListener('change', calculatePrice);
+        }
+    });
+
+    // 各プランカードにクリックイベントを追加
+    document.querySelectorAll('.plan-card').forEach(card => {
+        card.addEventListener('click', function() {
+            if (document.getElementById('quantity').value == null || document.getElementById('quantity').value == 0) {
+                alert('枚数を入力してください。');
+                return;
+            }
+            const planTitleElement = this.querySelector('.card-title');
+            if (planTitleElement) {
+                const planName = planTitleElement.innerText;
+                const planPriceElement = this.querySelector('.result-price');
+                const totalCost = parseInt(planPriceElement.textContent.replace('¥', '').replace(',', ''));
+                // 枚数を取得
+                const quantity = parseInt(document.getElementById('quantity').value);
+                // はがき持込なしの追加料金
+                const bringYourOwn = document.getElementById('bring-your-own').checked;
+
+                // はがき代の計算
+                let postcardCost = 0;
+                if (!bringYourOwn) {
+                    postcardCost = quantity * 85;
+                }
+
+                // 印刷代を計算
+                const printCost = totalCost - postcardCost;
+
+                document.getElementById('planName').innerText = planName;
+                document.getElementById('printCost').innerText = `¥${printCost.toLocaleString()}`;
+                document.getElementById('postcardCost').innerText = `¥${postcardCost.toLocaleString()}`;
+                document.getElementById('totalCost').innerText = `¥${totalCost.toLocaleString()}`;
+
+                modal.style.display = "block";
+            } else {
+                console.error("カードタイトルが見つかりません");
+            }
+        });
+    });
+
+    // モーダルを閉じる
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
     }
 });
