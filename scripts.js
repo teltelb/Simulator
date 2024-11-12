@@ -175,7 +175,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 各プランカードにクリックイベントを追加
     document.querySelectorAll('.plan-card').forEach(card => {
-        card.addEventListener('click', function() {
+        card.addEventListener('click', function(event) {
+            event.preventDefault(); // デフォルトの動作を防止
             if (document.getElementById('quantity').value == null || document.getElementById('quantity').value == 0) {
                 alert('枚数を入力してください。');
                 return;
