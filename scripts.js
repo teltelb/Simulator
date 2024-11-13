@@ -204,6 +204,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('printCost').innerText = `¥${printCost.toLocaleString()}`;
                 document.getElementById('postcardCost').innerText = `¥${postcardCost.toLocaleString()}`;
                 document.getElementById('totalCost').innerText = `¥${totalCost.toLocaleString()}`;
+                
+                const completionDateElement = document.getElementById('completionDate');
+                 // 仕上がり日を計算して表示
+                if (completionDateElement) {
+                    const completionDate = calculateCompletionDate(planName);
+                    completionDateElement.innerHTML = `仕上がり目安: <span>${completionDate}</span>`;
+                }
+
 
                 modal.style.display = "block";
             } else {
@@ -223,3 +231,32 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+// プランごとの所要日数を定義
+const PLAN_DAYS = {
+    'まるっとおまかせプラン': 4,
+    'のんびりおまかせプラン': 7,
+    '宛名なし高速プラン': 0,
+    'セルフプラン': 5
+};
+
+// 曜日の配列を定義
+const WEEKDAYS = ['日', '月', '火', '水', '木', '金', '土'];
+
+// 日付計算関数を修正
+function calculateCompletionDate(planName) {
+    const days = PLAN_DAYS[planName];
+    const today = new Date();
+    const completionDate = new Date(today);
+    completionDate.setDate(today.getDate() + days);
+    
+    // 日付フォーマットを設定
+    const month = completionDate.getMonth() + 1;
+    const date = completionDate.getDate();
+    const weekday = WEEKDAYS[completionDate.getDay()];
+    
+    if (days === 0) {
+        return '1時間後';
+    } else {
+        return `${month}月${date}日(${weekday})`;
+    }
+}
