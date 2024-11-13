@@ -372,3 +372,25 @@ and (orientation: portrait) {
         padding: 8px 15px;
     }
 }
+
+.completion-date {
+    color: #ff0000;
+    font-weight: bold;
+    margin: 10px 0;
+    font-size: 1.2rem;
+}
+
+/* 星マークのスタイル */
+.star-rating {
+    color: #FFD700; /* 濃い黄色 */
+    font-weight: bold;
+}
+
+/* セレクトボックス内のオプションスタイル */
+#grade option {
+    color: black;
+}
+
+#grade option .star-rating {
+    color: #FFD700;
+}
