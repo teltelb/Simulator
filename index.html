@@ -56,7 +56,7 @@
             <div class="col-6">
                 <label for="grade" class="form-label">グレード</label>
                 <select id="grade" class="form-select">
-                    <option value="ハイグレード">ハイグレード★★★★</option>
+                    <option value="ハイグレード">ハイグレード☆☆☆☆</option>
                     <option value="プレミアム">プレミアム★★★</option>
                     <option value="スタンダード">スタンダード★★</option>
                     <option value="ライト">ライト★</option>
@@ -103,6 +103,10 @@
             <div class="form-check">
                 <input type="checkbox" id="bring-your-own" class="form-check-input">
                 <label for="bring-your-own" class="form-check-label">はがき持込</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" id="input-assistance" class="form-check-input">
+                <label for="input-assistance" class="form-check-label">入力代行</label>
             </div>
         </div>
 
@@ -180,6 +184,7 @@
             <HR size="20"/>
             <p>印刷代（オプション含む）: <span id="printCost">0円</span></p>
             <p>はがき代: <span id="postcardCost">0円</span></p>
+            <p>クーポン割引:<span id="dmDiscount">0円</span></p>
             <u><p>合計金額: <span id="totalCost">0円</span></p></u>
         </div>
     </div>
