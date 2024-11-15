@@ -23,10 +23,12 @@ function calculatePrice() {
     const discount = document.getElementById('discount').value;
     const bringYourOwn = document.getElementById('bring-your-own').checked;
     const dmCoupon = document.getElementById('dm-option').checked;
+    const inputAssistance = document.getElementById('input-assistance').checked;
 
     // 印刷代の計算
     let selfPrice = calculateBasePrice(grade, finish, quantity);
 
+   
     // 割引の適用
     switch(discount) {
         case '超早割':
@@ -54,6 +56,11 @@ function calculatePrice() {
                 selfPrice -= 300;
                 break;
         }
+    }
+
+     // 入力代行の追加料金
+     if (inputAssistance) {
+        selfPrice += 1500;
     }
 
     // 各プランの価格計算
@@ -164,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const span = document.getElementsByClassName("close")[0];
 
     // 各入力要素にイベントリスナーを追加
-    const inputs = ['quantity', 'grade', 'finish', 'discount', 'bring-your-own', 'dm-option'];
+    const inputs = ['quantity', 'grade', 'finish', 'discount', 'bring-your-own', 'dm-option', 'input-assistance'];
     inputs.forEach(id => {
         const element = document.getElementById(id);
         if (element) {
@@ -181,6 +188,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert('枚数を入力してください。');
                 return;
             }
+            // モーダルを表示
+            modal.style.display = "block";
             const planTitleElement = this.querySelector('.card-title');
             if (planTitleElement) {
                 const planName = planTitleElement.innerText;
@@ -197,11 +206,36 @@ document.addEventListener('DOMContentLoaded', function() {
                     postcardCost = quantity * 85;
                 }
 
-                // 印刷代を計算
-                const printCost = totalCost - postcardCost;
+                // DMクーポンの割引情報を表示
+                const dmCoupon = document.getElementById('dm-option').checked;
+                const discount = document.getElementById('discount').value;
+                let dmDiscount = 0;
+
+                if (dmCoupon) {
+                    switch(discount) {
+                        case '超早割':
+                        case '早割':
+                            dmDiscount = 500;
+                            break;
+                        case '通常料金':
+                            dmDiscount = 300;
+                            break;
+                    }
+                }
+
+                if(dmDiscount > 0)
+                {
+                    document.getElementById('dmDiscount').innerText = `¥-${dmDiscount.toLocaleString()}`;
+                }
+                else{
+                    document.getElementById('dmDiscount').innerText = `¥${dmDiscount.toLocaleString()}`
+                }
+
+                // 印刷代からクーポン割引を引いた金額を表示
+                const printCost = totalCost - postcardCost + dmDiscount;
+                document.getElementById('printCost').innerText = `¥${printCost.toLocaleString()}`;
 
                 document.getElementById('planName').innerText = planName;
-                document.getElementById('printCost').innerText = `¥${printCost.toLocaleString()}`;
                 document.getElementById('postcardCost').innerText = `¥${postcardCost.toLocaleString()}`;
                 document.getElementById('totalCost').innerText = `¥${totalCost.toLocaleString()}`;
                 
@@ -212,7 +246,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     completionDateElement.innerHTML = `仕上がり目安: <span>${completionDate}</span>`;
                 }
 
-
+                // モーダルを表示
                 modal.style.display = "block";
             } else {
                 console.error("カードタイトルが見つかりません");
